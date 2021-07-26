@@ -3,10 +3,7 @@ package com.proquest.interview.phonebook;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 import com.proquest.interview.util.DatabaseUtil;
 
@@ -28,7 +25,8 @@ public class PhoneBookImpl implements PhoneBook {
 		String name = fn + " " + sn;
 		Person p = new Person();
 		// search in the List of people
-		for (ListIterator<Person> it = people.listIterator(); it.hasNext(); ){
+		ListIterator<Person> it = people.listIterator();
+		while (it.hasNext()){
 			Person tp = it.next();
 			if (tp.getName() == name) {
 				p = tp;
@@ -61,6 +59,7 @@ public class PhoneBookImpl implements PhoneBook {
 		 * John Smith, (248) 123-4567, 1234 Sand Hill Dr, Royal Oak, MI
 		 * Cynthia Smith, (824) 128-8758, 875 Main St, Ann Arbor, MI
 		*/
+		people = new ArrayList<Person>();
 		Person John = new Person("John Smith","(248) 123-4567", "1234 Sand Hill Dr, Royal Oak, MI");
 		Person Cynthia = new Person ("Cynthia Smith", "(824) 128-8758", "875 Main St, Ann Arbor, MI");
 		addPerson(John);
@@ -69,7 +68,9 @@ public class PhoneBookImpl implements PhoneBook {
 		// TODO: print the phone book out to System.out
 		Person p = new Person();
 		// search in the List of people
-		for (ListIterator<Person> it = people.listIterator(); it.hasNext(); ){
+		ListIterator<Person> it = people.listIterator();
+		while (it.hasNext())
+		{
 			p = it.next();
 			printPerson(p);
 		}
